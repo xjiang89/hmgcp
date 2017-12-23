@@ -1,5 +1,5 @@
 #example showing how to call hmgcp
-from hmgcp_general_sp import hmgcp
+from hmgcp_general import hmgcp
 from fun_def_qcqp import *
 import numpy as np
 import time

@@ -8,8 +8,6 @@ import scipy.sparse.linalg as la
 
 import scipy.optimize as opt
 
-opt.fmin_cg()
-
 def hmgcp(m, n, func_f, func_c, jac_f=0, jac_c=0, toler=1e-8, gamma=.5, alpha=0.7):
     val_f = lambda x, y: ingredient(x, y, func_f, func_c, 1)
     val_c = lambda x, y: ingredient(x, y, func_f, func_c, 2)

@@ -1,15 +1,18 @@
 import scipy.io as sio
-from hmgcp_general_sp import hmgcp
 import numpy as np
-import lemo.support as S
 import time
 import os
 import scipy.sparse as sp
+from hmgcp_general_sp import hmgcp
+
+"""list names of all files in directory `netlib`. """
 
 ls = os.listdir('/Users/debbie/Documents/netlib')
 ls = ls[0:]
+
+fname = input("Please input file name:\n")
 for name in ls:
-    if not name=='PILOT.mat':
+    if not name == fname:
         continue
     p = sio.loadmat('/Users/debbie/Documents/netlib/' + name)
     print(name+'\n')
@@ -47,11 +50,3 @@ for name in ls:
     obj = np.dot(c.T, x) + 0.5*np.dot(x.T, Q.dot(x))
     print('=========================================================')
     print(name, '||1e-8|||', obj, '||', e-s)
-
-# n=n+1
-# x = S.variable(np.ones(n))
-# y = S.variable(np.zeros(m))
-# x = (n/sum(x)) * x
-# xx = x[0:n-1]/x[n-1]
-# yy = y/x[n-1]
-# print(np.linalg.norm(f_(xx, yy).to_numpy(), 2))

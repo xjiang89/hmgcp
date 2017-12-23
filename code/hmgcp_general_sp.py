@@ -176,7 +176,6 @@ def hmgcp(x0, y0,
 
         # Solving one Newton step with the augmented system
 
-        #41.91s
         XX = sp.csr_matrix((list(x[0:n-1])+m*[1, ]+[x[n-1]], list(range(n+m)), list(range(n+m+1))), shape=(m+n, m+n))
         SS = sp.csr_matrix((list(s[0:n-1])+m*[0, ]+[s[n-1]], list(range(n+m)), list(range(n+m+1))), shape=(m+n, m+n))
         #
@@ -187,13 +186,6 @@ def hmgcp(x0, y0,
         rr3  = concatenate((rr1, zeros(m), rr2))
         rr4 =  (1-gamma)*(XX.dot(r))
         rr = rr3+rr4
-    #     #
-    #     # Linear system solve
-    #     #
-    #
-        # (A, b) = (XX.dot(MM)+SS, rr)
-        # A = np.asarray(A)
-        # dx = np.linalg.solve(A, b)
 
         (A, b) = (XX.dot(sp.csr_matrix(MM))+SS, rr)
         dx = la.spsolve(A, b)
